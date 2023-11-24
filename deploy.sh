@@ -3,6 +3,9 @@
 echo "------pull------"
 git pull
 git checkout $1
+echo "commit hash:"
+echo $1
+git show --format='%H' --no-patch
 
 # write webapp restart command
 echo "------restart webapp------"
@@ -19,6 +22,7 @@ sudo systemctl restart mysql
 # restart nginx
 echo "------restart nginx------"
 sudo rm /var/log/nginx/access.log
+nginx -t
 sudo systemctl reload nginx
 
 # write run bench command

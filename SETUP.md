@@ -38,6 +38,7 @@
 
 - mysql
   - [my.cnf](mysql/my.cnf)
+  - <https://dev.mysql.com/doc/refman/8.0/ja/>
 
   ```bash
     mkdir $HOME/.backup/mysql
@@ -58,7 +59,7 @@
     cp $HOME/.backup/nginx/nginx.conf $HOME/webapp/nginx/nginx.conf
     sudo ln -s $HOME/webapp/nginx/nginx.conf /etc/nginx/nginx.conf
     sudo vi $HOME/webapp/nginx/nginx.conf
-    sudo systemctl reload nginx
+    sudo systemctl restart nginx
   ```
 
 - 設定の確認
@@ -71,6 +72,8 @@
 
 - tools
   - [setup.sh](setup.sh)
+  - <https://github.com/tkuchiki/alp/blob/main/README.ja.md>
+  - <https://github.com/percona/percona-toolkit>
 - configファイルなどはシンボリックリンクにし、実態はリポジトリ内におく
   - ln -s 実態 リンク
   - 作成前に元のファイルのバックアップやコピーを取ることを忘れない
@@ -80,7 +83,7 @@
 - logs
 
   ```bash
-  sudo tail -n 100 /var/log/syslog
-  sudo tail -n 100 /var/log/mysql/error.log
+  sudo tail -n 200 -f /var/log/syslog
+  sudo tail -n 200 -f /var/log/mysql/error.log
   sudo journalctl -u nginx.service
   ```
