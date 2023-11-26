@@ -13,6 +13,6 @@ wget https://github.com/percona/percona-toolkit/archive/refs/tags/v3.5.5.tar.gz
 tar zxvf v3.5.5.tar.gz
 sudo mv ./percona-toolkit-3.3.1/bin/pt-query-digest /usr/local/bin/pt-query-digest
 ls
-rm -rf tar zxvf v3.5.5.tar.gz
-rm -rf ./percona-toolkit-3.3.1/bin/pt-query-digest
+rm -rf v3.5.5.tar.gz
+rm -rf ./percona-toolkit-3.5.5/bin/pt-query-digest
 ls
