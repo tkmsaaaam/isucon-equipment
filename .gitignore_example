@@ -7,7 +7,7 @@
 .*
 
 alp*
-percona-toolkit-3.5.5
+percona-toolkit-3.6.0
 
 **/admin
 **/frontend

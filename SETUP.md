@@ -28,7 +28,7 @@
   git clone
   ```
 
-- bacup
+- backup
 
   ```bash
     mkdir $HOME/.backup
@@ -87,3 +87,6 @@
   sudo tail -n 200 -f /var/log/mysql/error.log
   sudo journalctl -u nginx.service
   ```
+
+- pprof
+  - https://hi120ki.github.io/isucon/docs/monitoring/pprof/
