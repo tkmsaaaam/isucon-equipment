@@ -94,3 +94,4 @@
   ```bash
   ssh -L localport:localip(in remote):localport(in remote) ssh_hostname
   ```
+  - localhost:localport
