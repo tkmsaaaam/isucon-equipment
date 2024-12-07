@@ -91,7 +91,11 @@
 - pprof
   - https://hi120ki.github.io/isucon/docs/monitoring/pprof/
   - portfowarding
+
   ```bash
   ssh -L localport:localip(in remote):localport(in remote) ssh_hostname
+  pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
+  # go tool pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
   ```
-  - localhost:localport
+
+  - localhost:1080
