@@ -18,8 +18,8 @@
   vi $HOME/.ssh/config
   ssh -T git@github.com -i $HOME/.ssh/github
   git init
-  git config --global user.email ""
-  git config --global user.name ""
+  git config --global user.email "" # https://github.com/settings/emails
+  git config --global user.name "tkmsaaaam"
   git remote add origin git@github.com:hoge/fuga.git
   # `.gitignore_example` をルートに設置
   git add
@@ -39,6 +39,7 @@
 - mysql
   - [my.cnf](mysql/my.cnf)
   - <https://dev.mysql.com/doc/refman/8.0/ja/>
+  - ***シンボリックリンクは効かないかもしれない***
 
   ```bash
     mkdir $HOME/.backup/mysql
@@ -71,6 +72,7 @@
   ```
 
 - tools
+  - [check.sh](check.sh)
   - [setup.sh](setup.sh)
   - <https://github.com/tkuchiki/alp/blob/main/README.ja.md>
   - <https://github.com/percona/percona-toolkit>
@@ -80,6 +82,8 @@
 - 指標の確認、修正
 - deploy
   - [deploy.sh](deploy.sh)
+- analyze
+  - [analyze.sh](analyze.sh)
 - logs
 
   ```bash
@@ -89,7 +93,7 @@
   ```
 
 - pprof
-  - https://hi120ki.github.io/isucon/docs/monitoring/pprof/
+  - <https://hi120ki.github.io/isucon/docs/monitoring/pprof/>
   - portfowarding
 
   ```bash
@@ -99,3 +103,18 @@
   ```
 
   - localhost:1080
+
+  ```go
+  sl := []interface{}{}
+  if len(sl) > 0 {
+    param += " WHERE column_bar in ("
+    for i := 0; i < len(sl); i++ {
+      param += " ?"
+      if i != len(sl)-1 {
+        param += ","
+      }
+    }
+    param += ")"
+  }
+  result, er := s.Query("SELECT column_bar FROM table_foo "+param, sl...)
+  ```

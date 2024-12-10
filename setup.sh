@@ -7,6 +7,7 @@ ls
 rm -rf alp_linux_amd64.zip
 rm -rf ./alp
 ls
+which alp
 
 #setup pt-query-digest
 wget https://github.com/percona/percona-toolkit/archive/refs/tags/v3.6.0.tar.gz
@@ -16,3 +17,4 @@ ls
 rm -rf v3.6.0.tar.gz
 rm -rf ./percona-toolkit-3.6.0/bin/pt-query-digest
 ls
+which pt-query-digest
