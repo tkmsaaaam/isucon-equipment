@@ -28,14 +28,6 @@
   git clone
   ```
 
-- backup
-
-  ```bash
-    mkdir $HOME/.backup
-    mkdir $HOME/.tmp
-    scp -r isucon@ubuntu-focal:~/ ~/codes/isucon
-  ```
-
 - mysql
   - [my.cnf](mysql/my.cnf)
   - <https://dev.mysql.com/doc/refman/8.0/ja/>
@@ -63,58 +55,61 @@
     sudo systemctl restart nginx
   ```
 
-- 設定の確認
-
-  ```bash
-    sudo ls /usr/lib/systemd/system
-    sudo ls /etc/systemd/system
-    sudo cat path/name.service
-  ```
-
 - tools
-  - [check.sh](check.sh)
-  - [setup.sh](setup.sh)
-  - <https://github.com/tkuchiki/alp/blob/main/README.ja.md>
-  - <https://github.com/percona/percona-toolkit>
-- configファイルなどはシンボリックリンクにし、実態はリポジトリ内におく
-  - ln -s 実態 リンク
-  - 作成前に元のファイルのバックアップやコピーを取ることを忘れない
-- 指標の確認、修正
-- deploy
+  - check
+    - [check.sh](check.sh)
+  - setup
+    - [setup.sh](setup.sh)
+  - deploy
   - [deploy.sh](deploy.sh)
-- analyze
-  - [analyze.sh](analyze.sh)
-- logs
+  - analyze
+    - [analyze.sh](analyze.sh)
+    - <https://github.com/tkuchiki/alp/blob/main/README.ja.md>
+    - <https://github.com/percona/percona-toolkit>
+  - pprof
+    - <https://hi120ki.github.io/isucon/docs/monitoring/pprof/>
+    - portfowarding
 
-  ```bash
-  sudo tail -n 200 -f /var/log/syslog
-  sudo tail -n 200 -f /var/log/mysql/error.log
-  sudo journalctl -u nginx.service
-  ```
+    ```bash
+    ssh -L localport:localip(in remote):localport(in remote) ssh_hostname
+    pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
+    # go tool pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
+    ```
 
-- pprof
-  - <https://hi120ki.github.io/isucon/docs/monitoring/pprof/>
-  - portfowarding
+    - localhost:1080
 
-  ```bash
-  ssh -L localport:localip(in remote):localport(in remote) ssh_hostname
-  pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
-  # go tool pprof -http=localhost:1080 "http://localhost:6060/debug/pprof/profile?seconds=10"
-  ```
-
-  - localhost:1080
-
-  ```go
-  sl := []interface{}{}
-  if len(sl) > 0 {
-    param += " WHERE column_bar in ("
-    for i := 0; i < len(sl); i++ {
-      param += " ?"
-      if i != len(sl)-1 {
-        param += ","
+    ```go
+    sl := []interface{}{}
+    if len(sl) > 0 {
+      param += " WHERE column_bar in ("
+      for i := 0; i < len(sl); i++ {
+        param += " ?"
+        if i != len(sl)-1 {
+          param += ","
+        }
       }
+      param += ")"
     }
-    param += ")"
-  }
-  result, er := s.Query("SELECT column_bar FROM table_foo "+param, sl...)
-  ```
+    result, er := s.Query("SELECT column_bar FROM table_foo "+param, sl...)
+    ```
+
+- その他
+  - configファイルなどはシンボリックリンクにし、実態はリポジトリ内におく
+    - ln -s 実態 リンク
+    - 作成前に元のファイルのバックアップやコピーを取ることを忘れない
+  - 指標の確認、修正
+  - logs
+
+    ```bash
+    sudo tail -n 200 -f /var/log/syslog
+    sudo tail -n 200 -f /var/log/mysql/error.log
+    sudo journalctl -u nginx.service
+    ```
+
+  - backup
+
+    ```bash
+      mkdir $HOME/.backup
+      mkdir $HOME/.tmp
+      scp -r isucon@ubuntu-focal:~/ ~/codes/isucon
+    ```
