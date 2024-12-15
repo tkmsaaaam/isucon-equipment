@@ -7,6 +7,7 @@ echo "------free------"
 free -h
 echo "------services------"
 systemctl list-units --type=service --state=running
+echo "systemctl cat foo.service"
 echo "------system一覧------"
 echo "/usr/lib/systemd/system"
 sudo ls /usr/lib/systemd/system
