@@ -10,7 +10,7 @@ git show --format='%H' --no-patch
 
 # write webapp restart command
 echo "------restart webapp------"
-cd webapp/go && go build
+cd webapp/go && go build # binary名は-oオプション
 sudo systemctl restart isucondition.go.service
 
 # bench
